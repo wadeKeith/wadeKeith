@@ -35,8 +35,8 @@
 ## Activity
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=wadeKeith&show_icons=true&theme=default&hide_border=false&include_all_commits=true&count_private=false" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=wadeKeith&layout=compact&theme=default&hide_border=false" alt="Top languages" />
+  <img height="165" src="./assets/profile-stats.svg" alt="GitHub stats" />
+  <img height="165" src="./assets/profile-languages.svg" alt="Top languages" />
 </p>
 
 <p align="center">
@@ -65,7 +65,7 @@
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 0 | 2026-04-17 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 1 | 2026-04-17 |
 
-<sub>Last generated: 2026-05-01 17:27 UTC</sub>
+<sub>Last generated: 2026-05-01 17:30 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About

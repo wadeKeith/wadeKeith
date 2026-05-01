@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import html
 import json
 import os
 import pathlib
@@ -18,6 +19,7 @@ import urllib.request
 USERNAME = os.getenv("PROFILE_USERNAME", "wadeKeith")
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
+ASSETS = ROOT / "assets"
 START = "<!-- PROFILE:START -->"
 END = "<!-- PROFILE:END -->"
 PINNED_REPOS = ("OpenBMB/DeepThinkVLA",)
@@ -129,6 +131,93 @@ def shields_language_badges(language_counts: dict[str, int]) -> str:
     return "\n".join(badges)
 
 
+def svg_escape(value: object) -> str:
+    return html.escape(text(value), quote=True)
+
+
+def write_svg_cards(
+    user_payload: dict[str, object],
+    project_repo_count: int,
+    total_stars: int,
+    total_forks: int,
+    language_counts: dict[str, int],
+    generated_at: str,
+) -> None:
+    ASSETS.mkdir(parents=True, exist_ok=True)
+
+    stats = [
+        ("Public repos", user_payload.get("public_repos", 0)),
+        ("Project repos", project_repo_count),
+        ("Stars", total_stars),
+        ("Forks", total_forks),
+        ("Followers", user_payload.get("followers", 0)),
+        ("Following", user_payload.get("following", 0)),
+    ]
+    stat_cells = []
+    for index, (label, value) in enumerate(stats):
+        col = index % 2
+        row = index // 2
+        x = 28 + col * 220
+        y = 78 + row * 45
+        stat_cells.append(
+            f'<text x="{x}" y="{y}" font-size="24" font-weight="700" fill="#24292f">{svg_escape(value)}</text>'
+            f'<text x="{x}" y="{y + 20}" font-size="12" fill="#57606a">{svg_escape(label)}</text>'
+        )
+
+    stats_svg = f"""<svg width="480" height="210" viewBox="0 0 480 210" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub snapshot for {svg_escape(USERNAME)}</title>
+  <desc id="desc">Auto-generated GitHub profile statistics.</desc>
+  <rect x="0.5" y="0.5" width="479" height="209" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="24" y="36" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">GitHub Snapshot</text>
+  <text x="24" y="56" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#57606a">Generated {svg_escape(generated_at)}</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    {''.join(stat_cells)}
+  </g>
+</svg>
+"""
+    (ASSETS / "profile-stats.svg").write_text(stats_svg, encoding="utf-8")
+
+    language_colors = {
+        "Python": "#3776AB",
+        "C++": "#00599C",
+        "TypeScript": "#3178C6",
+        "Jupyter Notebook": "#F37626",
+        "TeX": "#008080",
+        "Shell": "#4EAA25",
+        "Makefile": "#6D8086",
+        "MATLAB": "#E16737",
+    }
+    languages = sorted(language_counts.items(), key=lambda item: (-item[1], item[0]))[:5]
+    max_count = max((count for _, count in languages), default=1)
+    language_rows = []
+    if languages:
+        for index, (language, count) in enumerate(languages):
+            y = 74 + index * 25
+            width = max(8, round(250 * count / max_count))
+            color = language_colors.get(language, "#59636e")
+            language_rows.append(
+                f'<text x="24" y="{y}" font-size="12" fill="#24292f">{svg_escape(language)}</text>'
+                f'<text x="316" y="{y}" font-size="12" text-anchor="end" fill="#57606a">{count}</text>'
+                f'<rect x="24" y="{y + 7}" width="292" height="8" rx="4" fill="#eaeef2"/>'
+                f'<rect x="24" y="{y + 7}" width="{width}" height="8" rx="4" fill="{color}"/>'
+            )
+    else:
+        language_rows.append('<text x="24" y="84" font-size="13" fill="#57606a">No language data yet</text>')
+
+    languages_svg = f"""<svg width="340" height="210" viewBox="0 0 340 210" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Language mix for {svg_escape(USERNAME)}</title>
+  <desc id="desc">Auto-generated language distribution by public project count.</desc>
+  <rect x="0.5" y="0.5" width="339" height="209" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="24" y="36" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">Language Mix</text>
+  <text x="24" y="56" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#57606a">By public project repositories</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    {''.join(language_rows)}
+  </g>
+</svg>
+"""
+    (ASSETS / "profile-languages.svg").write_text(languages_svg, encoding="utf-8")
+
+
 def build_generated_section() -> str:
     user_payload, _ = github_json(f"https://api.github.com/users/{urllib.parse.quote(USERNAME)}")
     if not isinstance(user_payload, dict):
@@ -165,6 +254,14 @@ def build_generated_section() -> str:
     )[:5]
 
     updated_at = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    write_svg_cards(
+        user_payload=user_payload,
+        project_repo_count=len(original_public_repos),
+        total_stars=total_stars,
+        total_forks=total_forks,
+        language_counts=language_counts,
+        generated_at=updated_at,
+    )
     trophy_url = (
         "https://github-profile-trophy.vercel.app/"
         f"?username={urllib.parse.quote(USERNAME)}"
@@ -174,22 +271,8 @@ def build_generated_section() -> str:
         "&margin-h=8"
         "&no-bg=true"
     )
-    stats_url = (
-        "https://github-readme-stats.vercel.app/api"
-        f"?username={urllib.parse.quote(USERNAME)}"
-        "&show_icons=true"
-        "&theme=default"
-        "&hide_border=false"
-        "&include_all_commits=true"
-        "&count_private=false"
-    )
-    top_langs_url = (
-        "https://github-readme-stats.vercel.app/api/top-langs/"
-        f"?username={urllib.parse.quote(USERNAME)}"
-        "&layout=compact"
-        "&theme=default"
-        "&hide_border=false"
-    )
+    stats_url = "./assets/profile-stats.svg"
+    top_langs_url = "./assets/profile-languages.svg"
     streak_url = (
         "https://streak-stats.demolab.com"
         f"?user={urllib.parse.quote(USERNAME)}"
