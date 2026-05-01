@@ -65,7 +65,7 @@
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 0 | 2026-04-17 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 1 | 2026-04-17 |
 
-<sub>Last generated: 2026-05-01 17:26 UTC</sub>
+<sub>Last generated: 2026-05-01 17:27 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
