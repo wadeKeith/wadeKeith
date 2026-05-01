@@ -20,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 START = "<!-- PROFILE:START -->"
 END = "<!-- PROFILE:END -->"
+PINNED_REPOS = ("OpenBMB/DeepThinkVLA",)
 
 
 def github_json(url: str) -> tuple[object, dict[str, str]]:
@@ -77,6 +78,13 @@ def fetch_repos() -> list[dict[str, object]]:
     return repos
 
 
+def fetch_repo(full_name: str) -> dict[str, object]:
+    payload, _ = github_json(f"https://api.github.com/repos/{urllib.parse.quote(full_name, safe='/')}")
+    if not isinstance(payload, dict):
+        raise RuntimeError(f"Unexpected repo payload for {full_name}: {payload!r}")
+    return payload
+
+
 def text(value: object, fallback: str = "") -> str:
     if value is None:
         return fallback
@@ -88,7 +96,10 @@ def md_escape(value: object) -> str:
 
 
 def repo_row(repo: dict[str, object]) -> str:
-    name = md_escape(repo.get("name"))
+    full_name = text(repo.get("full_name"))
+    owner = full_name.split("/", 1)[0] if "/" in full_name else USERNAME
+    display_name = full_name if owner != USERNAME and full_name else repo.get("name")
+    name = md_escape(display_name)
     html_url = text(repo.get("html_url"), f"https://github.com/{USERNAME}/{name}")
     description = md_escape(repo.get("description")) if repo.get("description") else "-"
     stars = repo.get("stargazers_count", 0)
@@ -128,6 +139,7 @@ def build_generated_section() -> str:
         repo for repo in repos
         if not repo.get("fork") and not repo.get("archived") and repo.get("name") != USERNAME
     ]
+    pinned_repos = [fetch_repo(full_name) for full_name in PINNED_REPOS]
     total_stars = sum(int(repo.get("stargazers_count") or 0) for repo in original_public_repos)
     total_forks = sum(int(repo.get("forks_count") or 0) for repo in original_public_repos)
     language_counts: dict[str, int] = {}
@@ -136,11 +148,16 @@ def build_generated_section() -> str:
         if language:
             language_counts[str(language)] = language_counts.get(str(language), 0) + 1
 
-    top_repos = sorted(
+    sorted_top_repos = sorted(
         original_public_repos,
         key=lambda repo: (int(repo.get("stargazers_count") or 0), text(repo.get("updated_at"))),
         reverse=True,
-    )[:6]
+    )
+    pinned_full_names = {text(repo.get("full_name")) for repo in pinned_repos}
+    top_repos = pinned_repos + [
+        repo for repo in sorted_top_repos
+        if text(repo.get("full_name")) not in pinned_full_names
+    ][:6]
     recent_repos = sorted(
         original_public_repos,
         key=lambda repo: text(repo.get("updated_at")),
@@ -224,7 +241,7 @@ def build_generated_section() -> str:
   <img src="{streak_url}" alt="GitHub contribution streak" />
 </p>
 
-## Featured Public Repositories
+## Featured Repositories
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |

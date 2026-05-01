@@ -43,10 +43,11 @@
   <img src="https://streak-stats.demolab.com?user=wadeKeith&theme=default&hide_border=false" alt="GitHub contribution streak" />
 </p>
 
-## Featured Public Repositories
+## Featured Repositories
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
+| [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 513 | 2026-04-30 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 197 | 2026-04-30 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 172 | 2026-05-01 |
 | [Dual-Robot-Manipulation-Sandbox](https://github.com/wadeKeith/Dual-Robot-Manipulation-Sandbox) | - | C++ | 2 | 2026-04-14 |
@@ -64,7 +65,7 @@
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 0 | 2026-04-17 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 1 | 2026-04-17 |
 
-<sub>Last generated: 2026-05-01 17:21 UTC</sub>
+<sub>Last generated: 2026-05-01 17:26 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
@@ -73,6 +74,7 @@ I work on embodied AI, vision-language-action models, robot learning, reinforcem
 
 Current focus areas:
 
+- Core project: [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA), enhancing reasoning capability of vision-language-action models.
 - VLA training and evaluation pipelines for robot manipulation.
 - Reasoning-oriented robot policies, recovery, clarification, horizon, and safe-abort evaluation.
 - Lightweight autonomous research agents for benchmark-driven model development.
@@ -81,6 +83,7 @@ Current focus areas:
 
 <p>
   <a href="https://github.com/wadeKeith?tab=repositories"><img src="https://img.shields.io/badge/Repositories-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repositories" /></a>
+  <a href="https://github.com/OpenBMB/DeepThinkVLA"><img src="https://img.shields.io/badge/DeepThinkVLA-0A66C2?style=for-the-badge&logo=github&logoColor=white" alt="DeepThinkVLA" /></a>
   <a href="https://github.com/wadeKeith/Awesome-Embodied-AI"><img src="https://img.shields.io/badge/Awesome%20Embodied%20AI-0A66C2?style=for-the-badge&logo=github&logoColor=white" alt="Awesome Embodied AI" /></a>
   <a href="https://github.com/wadeKeith/autoresearch-qwen"><img src="https://img.shields.io/badge/AutoResearch%20Qwen-4B8BBE?style=for-the-badge&logo=python&logoColor=white" alt="AutoResearch Qwen" /></a>
 </p>
