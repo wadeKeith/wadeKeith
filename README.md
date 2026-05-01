@@ -21,12 +21,12 @@
 
 ## Snapshot
 
-| Public repos | Original public repos | Stars | Forks | Followers | Following |
+| Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 50 | 29 | 377 | 34 | 72 | 14 |
+| 50 | 28 | 377 | 34 | 72 | 14 |
 
 <p align="center">
-<img src="https://img.shields.io/badge/Python-22-3776AB?style=flat-square" alt="Python" />
+<img src="https://img.shields.io/badge/Python-21-3776AB?style=flat-square" alt="Python" />
 <img src="https://img.shields.io/badge/C%2B%2B-2-00599C?style=flat-square" alt="C++" />
 <img src="https://img.shields.io/badge/MATLAB-1-555555?style=flat-square" alt="MATLAB" />
 <img src="https://img.shields.io/badge/Makefile-1-6D8086?style=flat-square" alt="Makefile" />
@@ -58,13 +58,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
-| [wadeKeith](https://github.com/wadeKeith/wadeKeith) | GitHub profile README for wadeKeith | Python | 0 | 2026-05-01 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 172 | 2026-05-01 |
 | [daily_paper](https://github.com/wadeKeith/daily_paper) | - | Python | 0 | 2026-05-01 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 197 | 2026-04-30 |
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 0 | 2026-04-17 |
+| [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 1 | 2026-04-17 |
 
-<sub>Last generated: 2026-05-01 17:16 UTC</sub>
+<sub>Last generated: 2026-05-01 17:18 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About

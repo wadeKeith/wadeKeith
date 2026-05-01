@@ -126,7 +126,7 @@ def build_generated_section() -> str:
     repos = fetch_repos()
     original_public_repos = [
         repo for repo in repos
-        if not repo.get("fork") and not repo.get("archived")
+        if not repo.get("fork") and not repo.get("archived") and repo.get("name") != USERNAME
     ]
     total_stars = sum(int(repo.get("stargazers_count") or 0) for repo in original_public_repos)
     total_forks = sum(int(repo.get("forks_count") or 0) for repo in original_public_repos)
@@ -205,7 +205,7 @@ def build_generated_section() -> str:
 
 ## Snapshot
 
-| Public repos | Original public repos | Stars | Forks | Followers | Following |
+| Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | {user_payload.get("public_repos", 0)} | {len(original_public_repos)} | {total_stars} | {total_forks} | {user_payload.get("followers", 0)} | {user_payload.get("following", 0)} |
 
