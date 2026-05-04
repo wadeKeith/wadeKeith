@@ -72,6 +72,8 @@
 
 I work on embodied AI, vision-language-action models, robot learning, reinforcement learning, and autonomous research tooling.
 
+Personal website: [www.yincheng429.cn](http://www.yincheng429.cn).
+
 Current focus areas:
 
 - Core project: [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA), enhancing reasoning capability of vision-language-action models.
@@ -82,6 +84,7 @@ Current focus areas:
 ## Links
 
 <p>
+  <a href="http://www.yincheng429.cn"><img src="https://img.shields.io/badge/Website-yincheng429.cn-0A66C2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Personal website" /></a>
   <a href="https://github.com/wadeKeith?tab=repositories"><img src="https://img.shields.io/badge/Repositories-181717?style=for-the-badge&logo=github&logoColor=white" alt="Repositories" /></a>
   <a href="https://github.com/OpenBMB/DeepThinkVLA"><img src="https://img.shields.io/badge/DeepThinkVLA-0A66C2?style=for-the-badge&logo=github&logoColor=white" alt="DeepThinkVLA" /></a>
   <a href="https://github.com/wadeKeith/Awesome-Embodied-AI"><img src="https://img.shields.io/badge/Awesome%20Embodied%20AI-0A66C2?style=for-the-badge&logo=github&logoColor=white" alt="Awesome Embodied AI" /></a>
