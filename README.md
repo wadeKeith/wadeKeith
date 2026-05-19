@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=wadeKeith&style=flat-square&color=0e75b6&label=Profile+views" alt="Profile views" />
   <img src="https://img.shields.io/github/followers/wadeKeith?style=flat-square&label=Followers&color=0e75b6" alt="Followers" />
-  <img src="https://img.shields.io/badge/Total%20stars-419-0e75b6?style=flat-square" alt="Total stars" />
+  <img src="https://img.shields.io/badge/Total%20stars-420-0e75b6?style=flat-square" alt="Total stars" />
   <img src="https://img.shields.io/badge/Public%20repos-59-0e75b6?style=flat-square" alt="Public repositories" />
 </p>
 
@@ -23,7 +23,7 @@
 
 | Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 59 | 29 | 419 | 42 | 76 | 14 |
+| 59 | 29 | 420 | 42 | 76 | 14 |
 
 <p align="center">
 <img src="https://img.shields.io/badge/Python-21-3776AB?style=flat-square" alt="Python" />
@@ -49,7 +49,7 @@
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
 | [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 523 | 2026-05-18 |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 209 | 2026-05-18 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-19 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 202 | 2026-05-16 |
 | [Dual-Robot-Manipulation-Sandbox](https://github.com/wadeKeith/Dual-Robot-Manipulation-Sandbox) | - | C++ | 2 | 2026-04-14 |
 | [UR5e_with_RL](https://github.com/wadeKeith/UR5e_with_RL) | - | Python | 2 | 2026-04-14 |
@@ -60,13 +60,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 209 | 2026-05-18 |
-| [daily_paper](https://github.com/wadeKeith/daily_paper) | - | Python | 0 | 2026-05-17 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-19 |
+| [daily_paper](https://github.com/wadeKeith/daily_paper) | - | Python | 0 | 2026-05-18 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 202 | 2026-05-16 |
 | [wadeKeith.github.io](https://github.com/wadeKeith/wadeKeith.github.io) | Personal homepage for Cheng Yin | HTML | 0 | 2026-05-04 |
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 0 | 2026-04-17 |
 
-<sub>Last generated: 2026-05-18 04:46 UTC</sub>
+<sub>Last generated: 2026-05-19 04:36 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
