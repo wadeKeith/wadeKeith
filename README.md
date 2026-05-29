@@ -11,7 +11,7 @@
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=wadeKeith&style=flat-square&color=0e75b6&label=Profile+views" alt="Profile views" />
   <img src="https://img.shields.io/github/followers/wadeKeith?style=flat-square&label=Followers&color=0e75b6" alt="Followers" />
-  <img src="https://img.shields.io/badge/Total%20stars-430-0e75b6?style=flat-square" alt="Total stars" />
+  <img src="https://img.shields.io/badge/Total%20stars-431-0e75b6?style=flat-square" alt="Total stars" />
   <img src="https://img.shields.io/badge/Public%20repos-57-0e75b6?style=flat-square" alt="Public repositories" />
 </p>
 
@@ -23,7 +23,7 @@
 
 | Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 57 | 29 | 430 | 44 | 79 | 14 |
+| 57 | 29 | 431 | 44 | 80 | 14 |
 
 <p align="center">
 <img src="https://img.shields.io/badge/Python-21-3776AB?style=flat-square" alt="Python" />
@@ -49,8 +49,8 @@
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
 | [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 523 | 2026-05-28 |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-28 |
-| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 209 | 2026-05-27 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-29 |
+| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 210 | 2026-05-28 |
 | [DeepThinkVLA_libero_plus](https://github.com/wadeKeith/DeepThinkVLA_libero_plus) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 3 | 2026-05-26 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 | [Dual-Robot-Manipulation-Sandbox](https://github.com/wadeKeith/Dual-Robot-Manipulation-Sandbox) | - | C++ | 2 | 2026-04-14 |
@@ -60,13 +60,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-28 |
-| [daily_paper](https://github.com/wadeKeith/daily_paper) | - | Python | 0 | 2026-05-27 |
-| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 209 | 2026-05-27 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 210 | 2026-05-29 |
+| [daily_paper](https://github.com/wadeKeith/daily_paper) | - | Python | 0 | 2026-05-28 |
+| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 210 | 2026-05-28 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 1 | 2026-05-26 |
 
-<sub>Last generated: 2026-05-28 04:45 UTC</sub>
+<sub>Last generated: 2026-05-29 04:47 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
