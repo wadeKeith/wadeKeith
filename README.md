@@ -50,7 +50,7 @@
 | --- | --- | --- | ---: | --- |
 | [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 525 | 2026-06-05 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 214 | 2026-06-06 |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-07 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-08 |
 | [DeepThinkVLA_libero_plus](https://github.com/wadeKeith/DeepThinkVLA_libero_plus) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 3 | 2026-05-26 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 | [Dual-Robot-Manipulation-Sandbox](https://github.com/wadeKeith/Dual-Robot-Manipulation-Sandbox) | - | C++ | 2 | 2026-04-14 |
@@ -60,13 +60,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
-| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-07 |
+| [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-08 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 214 | 2026-06-06 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 1 | 2026-05-26 |
 | [DeepThinkVLA_libero_plus](https://github.com/wadeKeith/DeepThinkVLA_libero_plus) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 3 | 2026-05-26 |
 
-<sub>Last generated: 2026-06-07 04:59 UTC</sub>
+<sub>Last generated: 2026-06-08 05:07 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
