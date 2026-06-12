@@ -51,7 +51,7 @@
 | [interactive-robot-eval-wrapper](https://github.com/wadeKeith/interactive-robot-eval-wrapper) | Lightweight evaluation wrapper for recovery, clarification, horizon, and safe-abort metrics in interactive robot learning. | Python | 1 | 2026-05-26 |
 | [DeepThinkVLA_libero_plus](https://github.com/wadeKeith/DeepThinkVLA_libero_plus) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 3 | 2026-05-26 |
 
-<sub>Last generated: 2026-06-12 04:13 UTC</sub>
+<sub>Last generated: 2026-06-12 04:14 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
