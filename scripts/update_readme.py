@@ -55,6 +55,36 @@ def github_json(url: str) -> tuple[object, dict[str, str]]:
     raise AssertionError("unreachable")
 
 
+def github_graphql(query: str, variables: dict[str, object]) -> dict[str, object] | None:
+    token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
+    if not token:
+        return None
+
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "User-Agent": f"{USERNAME}-profile-readme-updater",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    body = json.dumps({"query": query, "variables": variables}).encode("utf-8")
+    request = urllib.request.Request("https://api.github.com/graphql", data=body, headers=headers)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+                if payload.get("errors"):
+                    return None
+                data = payload.get("data")
+                return data if isinstance(data, dict) else None
+        except (urllib.error.HTTPError, urllib.error.URLError):
+            if attempt < 2:
+                time.sleep(2**attempt)
+                continue
+            return None
+    return None
+
+
 def parse_next_link(link_header: str | None) -> str | None:
     if not link_header:
         return None
@@ -97,6 +127,109 @@ def md_escape(value: object) -> str:
     return text(value, "-").replace("|", r"\|").replace("\n", " ").strip() or "-"
 
 
+def display_date(date_text: str | None) -> str:
+    if not date_text:
+        return "-"
+    try:
+        value = dt.date.fromisoformat(date_text)
+    except ValueError:
+        return date_text
+    return value.strftime("%b %-d")
+
+
+def date_span(start: str | None, end: str | None) -> str:
+    if not start or not end:
+        return "-"
+    if start == end:
+        return display_date(start)
+    return f"{display_date(start)} - {display_date(end)}"
+
+
+def fetch_contribution_stats() -> dict[str, object]:
+    query = """
+    query($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+    """
+    payload = github_graphql(query, {"login": USERNAME})
+    calendar = (
+        payload
+        and payload.get("user")
+        and payload["user"].get("contributionsCollection")
+        and payload["user"]["contributionsCollection"].get("contributionCalendar")
+    )
+    if not isinstance(calendar, dict):
+        return {
+            "available": False,
+            "total": "-",
+            "current": "-",
+            "current_span": "-",
+            "longest": "-",
+            "longest_span": "-",
+        }
+
+    days: list[dict[str, object]] = []
+    for week in calendar.get("weeks", []):
+        if isinstance(week, dict):
+            days.extend(day for day in week.get("contributionDays", []) if isinstance(day, dict))
+    days = sorted(days, key=lambda day: text(day.get("date")))
+
+    longest = 0
+    longest_start: str | None = None
+    longest_end: str | None = None
+    active = 0
+    active_start: str | None = None
+
+    for day in days:
+        date_text = text(day.get("date"))
+        count = int(day.get("contributionCount") or 0)
+        if count > 0:
+            if active == 0:
+                active_start = date_text
+            active += 1
+            if active > longest:
+                longest = active
+                longest_start = active_start
+                longest_end = date_text
+        else:
+            active = 0
+            active_start = None
+
+    current = 0
+    current_start: str | None = None
+    current_end: str | None = None
+    for day in reversed(days):
+        date_text = text(day.get("date"))
+        count = int(day.get("contributionCount") or 0)
+        if count <= 0:
+            break
+        current += 1
+        current_start = date_text
+        if current_end is None:
+            current_end = date_text
+
+    return {
+        "available": True,
+        "total": calendar.get("totalContributions", "-"),
+        "current": current,
+        "current_span": date_span(current_start, current_end),
+        "longest": longest,
+        "longest_span": date_span(longest_start, longest_end),
+    }
+
+
 def repo_row(repo: dict[str, object]) -> str:
     full_name = text(repo.get("full_name"))
     owner = full_name.split("/", 1)[0] if "/" in full_name else USERNAME
@@ -111,26 +244,6 @@ def repo_row(repo: dict[str, object]) -> str:
     return f"| [{name}]({html_url}) | {description} | {language} | {stars} | {updated} |"
 
 
-def shields_language_badges(language_counts: dict[str, int]) -> str:
-    colors = {
-        "Python": "3776AB",
-        "C++": "00599C",
-        "TypeScript": "3178C6",
-        "Jupyter Notebook": "F37626",
-        "TeX": "008080",
-        "Shell": "4EAA25",
-        "Makefile": "6D8086",
-    }
-    badges = []
-    for language, count in sorted(language_counts.items(), key=lambda item: (-item[1], item[0]))[:6]:
-        label = urllib.parse.quote(language)
-        color = colors.get(language, "555555")
-        badges.append(
-            f'<img src="https://img.shields.io/badge/{label}-{count}-{color}?style=flat-square" alt="{language}" />'
-        )
-    return "\n".join(badges)
-
-
 def svg_escape(value: object) -> str:
     return html.escape(text(value), quote=True)
 
@@ -141,9 +254,22 @@ def write_svg_cards(
     total_stars: int,
     total_forks: int,
     language_counts: dict[str, int],
+    pinned_repos: list[dict[str, object]],
+    contribution_stats: dict[str, object],
     generated_at: str,
 ) -> None:
     ASSETS.mkdir(parents=True, exist_ok=True)
+
+    hero_svg = f"""<svg width="900" height="130" viewBox="0 0 900 130" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">wadeKeith profile introduction</title>
+  <desc id="desc">Embodied AI, vision-language-action, and robot learning profile header.</desc>
+  <rect x="0.5" y="0.5" width="899" height="129" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="450" y="42" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#24292f">wadeKeith</text>
+  <text x="450" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#0969da">Embodied AI | Vision-Language-Action | Robot Learning</text>
+  <text x="450" y="101" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#57606a">Building research systems that connect models, data, and real robots</text>
+</svg>
+"""
+    (ASSETS / "profile-hero.svg").write_text(hero_svg, encoding="utf-8")
 
     stats = [
         ("Public repos", user_payload.get("public_repos", 0)),
@@ -217,6 +343,66 @@ def write_svg_cards(
 """
     (ASSETS / "profile-languages.svg").write_text(languages_svg, encoding="utf-8")
 
+    primary_project = pinned_repos[0] if pinned_repos else {}
+    project_name = text(primary_project.get("name"), "DeepThinkVLA")
+    project_owner = text(primary_project.get("owner", {}).get("login") if isinstance(primary_project.get("owner"), dict) else None, "OpenBMB")
+    project_stars = int(primary_project.get("stargazers_count") or 0)
+    python_projects = language_counts.get("Python", 0)
+    achievements = [
+        ("Core Project", project_name, f"{project_owner}, {project_stars} stars"),
+        ("Project Stars", total_stars, "owned public repos"),
+        ("Public Repos", user_payload.get("public_repos", 0), "visible repositories"),
+        ("Python", python_projects, "project repositories"),
+        ("Followers", user_payload.get("followers", 0), "GitHub followers"),
+    ]
+    achievement_cells = []
+    for index, (label, value, caption) in enumerate(achievements):
+        x = 18 + index * 172
+        achievement_cells.append(
+            f'<rect x="{x}" y="58" width="158" height="92" rx="8" fill="#ffffff" stroke="#d0d7de"/>'
+            f'<text x="{x + 79}" y="83" text-anchor="middle" font-size="12" font-weight="700" fill="#57606a">{svg_escape(label)}</text>'
+            f'<text x="{x + 79}" y="113" text-anchor="middle" font-size="20" font-weight="700" fill="#24292f">{svg_escape(value)}</text>'
+            f'<text x="{x + 79}" y="135" text-anchor="middle" font-size="11" fill="#57606a">{svg_escape(caption)}</text>'
+        )
+    achievements_svg = f"""<svg width="900" height="170" viewBox="0 0 900 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub profile highlights for {svg_escape(USERNAME)}</title>
+  <desc id="desc">Auto-generated repository and profile highlights.</desc>
+  <rect x="0.5" y="0.5" width="899" height="169" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="24" y="35" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">Profile Highlights</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    {''.join(achievement_cells)}
+  </g>
+</svg>
+"""
+    (ASSETS / "profile-achievements.svg").write_text(achievements_svg, encoding="utf-8")
+
+    contribution_items = [
+        ("12-mo contributions", contribution_stats.get("total", "-"), "Contribution calendar"),
+        ("Current streak", contribution_stats.get("current", "-"), contribution_stats.get("current_span", "-")),
+        ("Longest streak", contribution_stats.get("longest", "-"), contribution_stats.get("longest_span", "-")),
+    ]
+    contribution_cells = []
+    for index, (label, value, caption) in enumerate(contribution_items):
+        x = 28 + index * 158
+        contribution_cells.append(
+            f'<text x="{x + 63}" y="92" text-anchor="middle" font-size="30" font-weight="700" fill="#24292f">{svg_escape(value)}</text>'
+            f'<text x="{x + 63}" y="121" text-anchor="middle" font-size="14" font-weight="700" fill="#0969da">{svg_escape(label)}</text>'
+            f'<text x="{x + 63}" y="146" text-anchor="middle" font-size="12" fill="#57606a">{svg_escape(caption)}</text>'
+            f'<line x1="{x + 135}" y1="64" x2="{x + 135}" y2="154" stroke="#d8dee4"/>'
+        )
+    contributions_svg = f"""<svg width="520" height="210" viewBox="0 0 520 210" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Contribution summary for {svg_escape(USERNAME)}</title>
+  <desc id="desc">Auto-generated contribution summary from GitHub contribution data.</desc>
+  <rect x="0.5" y="0.5" width="519" height="209" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="24" y="36" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">Contribution Summary</text>
+  <text x="24" y="56" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#57606a">Generated {svg_escape(generated_at)}</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    {''.join(contribution_cells)}
+  </g>
+</svg>
+"""
+    (ASSETS / "profile-contributions.svg").write_text(contributions_svg, encoding="utf-8")
+
 
 def build_generated_section() -> str:
     user_payload, _ = github_json(f"https://api.github.com/users/{urllib.parse.quote(USERNAME)}")
@@ -252,6 +438,7 @@ def build_generated_section() -> str:
         key=lambda repo: text(repo.get("updated_at")),
         reverse=True,
     )[:5]
+    contribution_stats = fetch_contribution_stats()
 
     updated_at = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     write_svg_cards(
@@ -260,47 +447,21 @@ def build_generated_section() -> str:
         total_stars=total_stars,
         total_forks=total_forks,
         language_counts=language_counts,
+        pinned_repos=pinned_repos,
+        contribution_stats=contribution_stats,
         generated_at=updated_at,
-    )
-    trophy_url = (
-        "https://github-profile-trophy.vercel.app/"
-        f"?username={urllib.parse.quote(USERNAME)}"
-        "&theme=flat"
-        "&column=7"
-        "&margin-w=8"
-        "&margin-h=8"
-        "&no-bg=true"
     )
     stats_url = "./assets/profile-stats.svg"
     top_langs_url = "./assets/profile-languages.svg"
-    streak_url = (
-        "https://streak-stats.demolab.com"
-        f"?user={urllib.parse.quote(USERNAME)}"
-        "&theme=default"
-        "&hide_border=false"
-    )
-    visitor_url = (
-        "https://komarev.com/ghpvc/"
-        f"?username={urllib.parse.quote(USERNAME)}"
-        "&style=flat-square"
-        "&color=0e75b6"
-        "&label=Profile+views"
-    )
+    achievements_url = "./assets/profile-achievements.svg"
+    contributions_url = "./assets/profile-contributions.svg"
 
-    language_badges = shields_language_badges(language_counts)
     top_repo_table = "\n".join(repo_row(repo) for repo in top_repos)
     recent_repo_table = "\n".join(repo_row(repo) for repo in recent_repos)
 
     return f"""<!-- This section is generated by scripts/update_readme.py. -->
 <p align="center">
-  <img src="{visitor_url}" alt="Profile views" />
-  <img src="https://img.shields.io/github/followers/{USERNAME}?style=flat-square&label=Followers&color=0e75b6" alt="Followers" />
-  <img src="https://img.shields.io/badge/Total%20stars-{total_stars}-0e75b6?style=flat-square" alt="Total stars" />
-  <img src="https://img.shields.io/badge/Public%20repos-{user_payload.get("public_repos", 0)}-0e75b6?style=flat-square" alt="Public repositories" />
-</p>
-
-<p align="center">
-  <img src="{trophy_url}" alt="GitHub profile trophies" />
+  <img src="{achievements_url}" alt="GitHub profile highlights" />
 </p>
 
 ## Snapshot
@@ -308,10 +469,6 @@ def build_generated_section() -> str:
 | Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | {user_payload.get("public_repos", 0)} | {len(original_public_repos)} | {total_stars} | {total_forks} | {user_payload.get("followers", 0)} | {user_payload.get("following", 0)} |
-
-<p align="center">
-{language_badges}
-</p>
 
 ## Activity
 
@@ -321,7 +478,7 @@ def build_generated_section() -> str:
 </p>
 
 <p align="center">
-  <img src="{streak_url}" alt="GitHub contribution streak" />
+  <img height="165" src="{contributions_url}" alt="GitHub contribution summary" />
 </p>
 
 ## Featured Repositories
