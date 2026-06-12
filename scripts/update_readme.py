@@ -248,6 +248,63 @@ def svg_escape(value: object) -> str:
     return html.escape(text(value), quote=True)
 
 
+def compact_number(value: object) -> str:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return text(value, "-")
+    if number >= 1_000_000:
+        return f"{number / 1_000_000:.1f}M".replace(".0M", "M")
+    if number >= 1_000:
+        return f"{number / 1_000:.1f}k".replace(".0k", "k")
+    if number == int(number):
+        return str(int(number))
+    return f"{number:.1f}"
+
+
+def account_age_years(user_payload: dict[str, object]) -> str:
+    created_at = text(user_payload.get("created_at"))
+    if not created_at:
+        return "-"
+    try:
+        created = dt.datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+    except ValueError:
+        return "-"
+    now = dt.datetime.now(dt.timezone.utc)
+    years = max(0.0, (now - created).days / 365.25)
+    return f"{years:.1f}y"
+
+
+def trophy_card(
+    x: int,
+    y: int,
+    title: str,
+    rank: str,
+    subtitle: str,
+    points: str,
+    color: str,
+    progress: float,
+) -> str:
+    progress_width = max(14, min(108, round(108 * progress)))
+    cup_x = x + 42
+    cup_y = y + 42
+    return f"""<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
+    <rect x="{x}" y="{y}" width="128" height="150" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="{x + 64}" y="{y + 24}" text-anchor="middle" font-size="14" font-weight="700" fill="#111111">{svg_escape(title)}</text>
+    <path d="M{cup_x + 12} {cup_y + 14} C{cup_x - 8} {cup_y + 14} {cup_x - 8} {cup_y + 42} {cup_x + 15} {cup_y + 44}" fill="none" stroke="{color}" stroke-width="6"/>
+    <path d="M{cup_x + 44} {cup_y + 14} C{cup_x + 64} {cup_y + 14} {cup_x + 64} {cup_y + 42} {cup_x + 41} {cup_y + 44}" fill="none" stroke="{color}" stroke-width="6"/>
+    <path d="M{cup_x + 8} {cup_y} H{cup_x + 48} C{cup_x + 48} {cup_y + 28} {cup_x + 41} {cup_y + 47} {cup_x + 28} {cup_y + 52} C{cup_x + 15} {cup_y + 47} {cup_x + 8} {cup_y + 28} {cup_x + 8} {cup_y} Z" fill="{color}" opacity="0.92"/>
+    <circle cx="{cup_x + 28}" cy="{cup_y + 23}" r="22" fill="#ffffff" stroke="{color}" stroke-width="4"/>
+    <text x="{cup_x + 28}" y="{cup_y + 32}" text-anchor="middle" font-size="26" font-weight="800" fill="{color}">{svg_escape(rank)}</text>
+    <path d="M{cup_x + 23} {cup_y + 52} H{cup_x + 33} V{cup_y + 68} H{cup_x + 23} Z" fill="{color}"/>
+    <path d="M{cup_x + 10} {cup_y + 68} H{cup_x + 46} V{cup_y + 76} H{cup_x + 10} Z" fill="{color}"/>
+    <text x="{x + 64}" y="{y + 118}" text-anchor="middle" font-size="12" font-weight="700" fill="#57606a">{svg_escape(subtitle)}</text>
+    <text x="{x + 64}" y="{y + 135}" text-anchor="middle" font-size="11" font-weight="700" fill="#57606a">{svg_escape(points)}</text>
+    <rect x="{x + 10}" y="{y + 141}" width="108" height="4" rx="2" fill="#c8d9f1"/>
+    <rect x="{x + 10}" y="{y + 141}" width="{progress_width}" height="4" rx="2" fill="#0969da"/>
+  </g>"""
+
+
 def write_svg_cards(
     user_payload: dict[str, object],
     project_repo_count: int,
@@ -345,36 +402,40 @@ def write_svg_cards(
 
     primary_project = pinned_repos[0] if pinned_repos else {}
     project_name = text(primary_project.get("name"), "DeepThinkVLA")
-    project_owner = text(primary_project.get("owner", {}).get("login") if isinstance(primary_project.get("owner"), dict) else None, "OpenBMB")
     project_stars = int(primary_project.get("stargazers_count") or 0)
-    python_projects = language_counts.get("Python", 0)
-    achievements = [
-        ("Core Project", project_name, f"{project_owner}, {project_stars} stars"),
-        ("Project Stars", total_stars, "owned public repos"),
-        ("Public Repos", user_payload.get("public_repos", 0), "visible repositories"),
-        ("Python", python_projects, "project repositories"),
-        ("Followers", user_payload.get("followers", 0), "GitHub followers"),
+    language_count = len(language_counts)
+    public_repos = int(user_payload.get("public_repos") or 0)
+    followers = int(user_payload.get("followers") or 0)
+    contribution_total = int(contribution_stats.get("total") if isinstance(contribution_stats.get("total"), int) else 0)
+    current_streak = int(contribution_stats.get("current") if isinstance(contribution_stats.get("current"), int) else 0)
+    trophy_items = [
+        ("MultiLanguage", "S" if language_count >= 5 else "A", "Rainbow Lang User", f"{language_count} langs", "#c42df5", min(1, language_count / 6)),
+        ("Stars", "S" if total_stars >= 300 else "A", "High Stargazer", compact_number(total_stars), "#d18b00", min(1, total_stars / 500)),
+        ("Followers", "A" if followers >= 50 else "B", "Community Builder", compact_number(followers), "#d59a66", min(1, followers / 150)),
+        ("Repositories", "A" if public_repos >= 30 else "B", "Repo Creator", compact_number(public_repos), "#d18b00", min(1, public_repos / 60)),
+        ("DeepThinkVLA", "S", "Core Project", f"{compact_number(project_stars)} stars", "#d18b00", min(1, project_stars / 600)),
+        ("Commits", "A" if contribution_total >= 500 else "B", "Hyper Committer", compact_number(contribution_total), "#6f7dc8", min(1, contribution_total / 800)),
+        ("Streak", "A" if current_streak >= 7 else "B", "Daily Builder", f"{compact_number(current_streak)} days", "#f08a00", min(1, current_streak / 14)),
+        ("Experience", "A", "Experienced Dev", account_age_years(user_payload), "#7f8c8d", 0.72),
+        ("Forks", "A" if total_forks >= 30 else "B", "Project Forks", compact_number(total_forks), "#5f6b73", min(1, total_forks / 80)),
+        ("Projects", "B" if project_repo_count < 30 else "A", "Active Projects", compact_number(project_repo_count), "#59636e", min(1, project_repo_count / 40)),
     ]
-    achievement_cells = []
-    for index, (label, value, caption) in enumerate(achievements):
-        x = 18 + index * 172
-        achievement_cells.append(
-            f'<rect x="{x}" y="58" width="158" height="92" rx="8" fill="#ffffff" stroke="#d0d7de"/>'
-            f'<text x="{x + 79}" y="83" text-anchor="middle" font-size="12" font-weight="700" fill="#57606a">{svg_escape(label)}</text>'
-            f'<text x="{x + 79}" y="113" text-anchor="middle" font-size="20" font-weight="700" fill="#24292f">{svg_escape(value)}</text>'
-            f'<text x="{x + 79}" y="135" text-anchor="middle" font-size="11" fill="#57606a">{svg_escape(caption)}</text>'
-        )
-    achievements_svg = f"""<svg width="900" height="170" viewBox="0 0 900 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">GitHub profile highlights for {svg_escape(USERNAME)}</title>
-  <desc id="desc">Auto-generated repository and profile highlights.</desc>
-  <rect x="0.5" y="0.5" width="899" height="169" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
-  <text x="24" y="35" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">Profile Highlights</text>
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif">
-    {''.join(achievement_cells)}
-  </g>
+
+    trophy_cards = []
+    for index, item in enumerate(trophy_items):
+        row = index // 5
+        col = index % 5
+        trophy_cards.append(trophy_card(34 + col * 170, 52 + row * 166, *item))
+    trophy_svg = f"""<svg width="900" height="390" viewBox="0 0 900 390" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub profile trophies for {svg_escape(USERNAME)}</title>
+  <desc id="desc">Self-hosted trophy-style profile board generated from GitHub data.</desc>
+  <rect x="0.5" y="0.5" width="899" height="389" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="24" y="34" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#24292f">GitHub Profile Trophies</text>
+  <text x="876" y="34" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" fill="#57606a">Generated {svg_escape(generated_at)}</text>
+  {''.join(trophy_cards)}
 </svg>
 """
-    (ASSETS / "profile-achievements.svg").write_text(achievements_svg, encoding="utf-8")
+    (ASSETS / "profile-trophy.svg").write_text(trophy_svg, encoding="utf-8")
 
     contribution_items = [
         ("12-mo contributions", contribution_stats.get("total", "-"), "Contribution calendar"),
@@ -453,7 +514,7 @@ def build_generated_section() -> str:
     )
     stats_url = "./assets/profile-stats.svg"
     top_langs_url = "./assets/profile-languages.svg"
-    achievements_url = "./assets/profile-achievements.svg"
+    trophy_url = "./assets/profile-trophy.svg"
     contributions_url = "./assets/profile-contributions.svg"
 
     top_repo_table = "\n".join(repo_row(repo) for repo in top_repos)
@@ -461,7 +522,7 @@ def build_generated_section() -> str:
 
     return f"""<!-- This section is generated by scripts/update_readme.py. -->
 <p align="center">
-  <img src="{achievements_url}" alt="GitHub profile highlights" />
+  <img src="{trophy_url}" alt="GitHub profile trophies" />
 </p>
 
 ## Snapshot
