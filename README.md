@@ -45,13 +45,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
+| [wadeKeith.github.io](https://github.com/wadeKeith/wadeKeith.github.io) | Personal homepage for Cheng Yin | JavaScript | 0 | 2026-06-17 |
 | [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 216 | 2026-06-15 |
-| [wadeKeith.github.io](https://github.com/wadeKeith/wadeKeith.github.io) | Personal homepage for Cheng Yin | HTML | 0 | 2026-06-14 |
 | [LLM_Book](https://github.com/wadeKeith/LLM_Book) | - | TeX | 0 | 2026-06-14 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 
-<sub>Last generated: 2026-06-16 05:38 UTC</sub>
+<sub>Last generated: 2026-06-17 05:20 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
