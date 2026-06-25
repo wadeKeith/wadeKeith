@@ -51,7 +51,7 @@
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
 
-<sub>Last generated: 2026-06-24 04:41 UTC</sub>
+<sub>Last generated: 2026-06-25 04:37 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
