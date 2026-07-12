@@ -51,7 +51,7 @@
 | [LLM_Book](https://github.com/wadeKeith/LLM_Book) | - | TeX | 0 | 2026-06-14 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 
-<sub>Last generated: 2026-07-11 03:46 UTC</sub>
+<sub>Last generated: 2026-07-12 04:02 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
