@@ -16,7 +16,7 @@
 
 | Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 42 | 25 | 450 | 44 | 82 | 15 |
+| 42 | 25 | 450 | 44 | 83 | 15 |
 
 ## Activity
 
@@ -51,7 +51,7 @@
 | [LLM_Book](https://github.com/wadeKeith/LLM_Book) | - | TeX | 0 | 2026-06-14 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 
-<sub>Last generated: 2026-07-21 03:51 UTC</sub>
+<sub>Last generated: 2026-07-22 03:51 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
