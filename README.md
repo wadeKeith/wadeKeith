@@ -16,7 +16,7 @@
 
 | Public repos | Project repos | Stars | Forks | Followers | Following |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 42 | 25 | 456 | 44 | 84 | 15 |
+| 42 | 25 | 458 | 45 | 84 | 15 |
 
 ## Activity
 
@@ -34,7 +34,7 @@
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
 | [OpenBMB/DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 527 | 2026-08-10 |
-| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 234 | 2026-08-07 |
+| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 236 | 2026-08-11 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 | [DeepThinkVLA_libero_plus](https://github.com/wadeKeith/DeepThinkVLA_libero_plus) | DeepThinkVLA: Enhancing Reasoning Capability of Vision-Language-Action Models | Python | 3 | 2026-05-26 |
 | [dualkey-agent](https://github.com/wadeKeith/dualkey-agent) | Approvals, deterministic policy, and signed receipts for AI agent actions. | Python | 2 | 2026-05-26 |
@@ -45,13 +45,13 @@
 
 | Repository | Description | Language | Stars | Updated |
 | --- | --- | --- | ---: | --- |
-| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 234 | 2026-08-07 |
+| [Awesome-Embodied-AI](https://github.com/wadeKeith/Awesome-Embodied-AI) | Curated embodied AI list: surveys, VLA models, datasets, simulators, humanoids, robot learning, and safety resources. | Python | 236 | 2026-08-11 |
 | [zk](https://github.com/wadeKeith/zk) | - | Python | 0 | 2026-06-26 |
 | [wadeKeith.github.io](https://github.com/wadeKeith/wadeKeith.github.io) | Personal homepage for Cheng Yin | JavaScript | 0 | 2026-06-19 |
 | [LLM_Book](https://github.com/wadeKeith/LLM_Book) | - | TeX | 0 | 2026-06-14 |
 | [autoresearch-qwen](https://github.com/wadeKeith/autoresearch-qwen) | Autonomous Qwen3-VL training-code research on the official DocVQA benchmark. main: NVIDIA multi-GPU, mlx: Apple Silicon/MPS. | Python | 211 | 2026-06-14 |
 
-<sub>Last generated: 2026-08-11 02:30 UTC</sub>
+<sub>Last generated: 2026-08-12 02:59 UTC</sub>
 <!-- PROFILE:END -->
 
 ## About
