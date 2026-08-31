@@ -1,59 +1,49 @@
 <svg width="900" height="220" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Cheng Yin — memory in action</title>
-  <desc id="desc">Research profile banner showing timestamped observations retained until a robot action is selected.</desc>
+  <title id="title">Cheng Yin — embodied AI research</title>
+  <desc id="desc">Research profile banner connecting visual perception, reasoning, and robot action.</desc>
 
   <rect x="1" y="1" width="898" height="218" rx="12" fill="#121820" stroke="#35414D" stroke-width="2"/>
   <path d="M468 26V194" stroke="#2A3540"/>
 
   <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
     <text x="42" y="42" font-size="12" font-weight="700" letter-spacing="2.2" fill="#54C6BE">CHENG YIN · RESEARCH PROFILE</text>
-    <text x="42" y="85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="700" fill="#EEF2F3">I build VLAs that remember,</text>
-    <text x="42" y="121" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="700" fill="#EEF2F3">reason, and act across time.</text>
-    <text x="42" y="156" font-size="13" fill="#AAB8C3">EMBODIED AI · ROBOT LEARNING · LONG-CONTEXT MEMORY</text>
+    <text x="42" y="85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="25" font-weight="700" fill="#EEF2F3">I build systems that connect</text>
+    <text x="42" y="121" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="25" font-weight="700" fill="#EEF2F3">perception, reasoning, and action.</text>
+    <text x="42" y="156" font-size="11.5" fill="#AAB8C3">EMBODIED AI · VISION-LANGUAGE-ACTION · ROBOT LEARNING</text>
     <path d="M42 177H224" stroke="#185ADB" stroke-width="3"/>
     <path d="M224 177H438" stroke="#54C6BE" stroke-width="3"/>
     <text x="42" y="201" font-size="11" fill="#7F909D">HUST · THUNLP · BEIJING ZHONGGUANCUN ACADEMY</text>
   </g>
 
   <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
-    <text x="500" y="42" font-size="11" font-weight="700" letter-spacing="1.6" fill="#7F909D">RETAINED CONTEXT</text>
-    <text x="846" y="42" text-anchor="end" font-size="11" font-weight="700" letter-spacing="1.6" fill="#FF7B5E">ACTION</text>
+    <text x="500" y="42" font-size="11" font-weight="700" letter-spacing="1.6" fill="#7F909D">VISION-LANGUAGE-ACTION</text>
+    <text x="846" y="42" text-anchor="end" font-size="11" font-weight="700" letter-spacing="1.6" fill="#FF7B5E">SYSTEMS</text>
 
-    <path d="M523 112H822" stroke="#35414D" stroke-width="6" stroke-linecap="round"/>
-    <path d="M523 112H761" stroke="#54C6BE" stroke-width="3" stroke-linecap="round"/>
-    <path d="M761 112H822" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"/>
+    <path d="M594 111H622M716 111H744" stroke="#40505D" stroke-width="2"/>
+    <path d="M615 105L622 111L615 117M737 105L744 111L737 117" stroke="#8FA1AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
     <g>
-      <rect x="494" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
-      <circle cx="527" cy="91" r="5" fill="#54C6BE"/>
-      <text x="527" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 01</text>
-      <text x="527" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−60s</text>
+      <rect x="500" y="70" width="94" height="84" rx="6" fill="#1B2630" stroke="#40505D"/>
+      <rect x="524" y="86" width="46" height="27" rx="3" stroke="#54C6BE" stroke-width="2"/>
+      <path d="M524 94H518V105H524M570 94H576V105H570" stroke="#54C6BE" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="547" cy="99.5" r="5" fill="#54C6BE"/>
+      <text x="547" y="137" text-anchor="middle" font-size="10.5" font-weight="700" fill="#EEF2F3">PERCEPTION</text>
     </g>
     <g>
-      <rect x="568" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
-      <circle cx="601" cy="91" r="5" fill="#54C6BE"/>
-      <text x="601" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 02</text>
-      <text x="601" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−20s</text>
+      <rect x="622" y="70" width="94" height="84" rx="6" fill="#182F4F" stroke="#3977C9"/>
+      <circle cx="652" cy="93" r="5" fill="#4C8FE8"/>
+      <circle cx="686" cy="93" r="5" fill="#4C8FE8"/>
+      <circle cx="669" cy="109" r="5" fill="#54C6BE"/>
+      <path d="M656 96L665 106M682 96L673 106M657 93H681" stroke="#AFCBF1" stroke-width="2"/>
+      <text x="669" y="137" text-anchor="middle" font-size="10.5" font-weight="700" fill="#EEF2F3">REASONING</text>
     </g>
     <g>
-      <rect x="642" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
-      <circle cx="675" cy="91" r="5" fill="#54C6BE"/>
-      <text x="675" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 03</text>
-      <text x="675" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−5s</text>
-    </g>
-    <g>
-      <rect x="716" y="72" width="66" height="80" rx="5" fill="#182F4F" stroke="#3977C9"/>
-      <circle cx="749" cy="91" r="5" fill="#4C8FE8"/>
-      <text x="749" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">NOW</text>
-      <text x="749" y="138" text-anchor="middle" font-size="10" fill="#AFCBF1">t</text>
-    </g>
-    <g>
-      <rect x="790" y="72" width="66" height="80" rx="5" fill="#FF5A36" stroke="#FF8B72"/>
-      <path d="M809 91H837M829 83L837 91L829 99" stroke="#121820" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="823" y="119" text-anchor="middle" font-size="11" font-weight="800" fill="#121820">ACT</text>
-      <text x="823" y="138" text-anchor="middle" font-size="10" font-weight="700" fill="#121820">policy</text>
+      <rect x="744" y="70" width="102" height="84" rx="6" fill="#FF5A36" stroke="#FF8B72"/>
+      <path d="M769 99H817M808 90L817 99L808 108" stroke="#121820" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M769 90V108" stroke="#121820" stroke-width="3" stroke-linecap="round"/>
+      <text x="795" y="137" text-anchor="middle" font-size="10.5" font-weight="800" fill="#121820">ACTION</text>
     </g>
 
-    <text x="500" y="183" font-size="11" fill="#8FA1AE">PRIOR OBSERVATIONS REMAIN AVAILABLE AT DECISION TIME</text>
+    <text x="500" y="183" font-size="11" fill="#8FA1AE">FROM VISUAL INPUTS TO PHYSICAL DECISIONS</text>
   </g>
 </svg>
