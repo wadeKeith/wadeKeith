@@ -1,8 +1,59 @@
-<svg width="900" height="130" viewBox="0 0 900 130" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">wadeKeith profile introduction</title>
-  <desc id="desc">Embodied AI, vision-language-action, and robot learning profile header.</desc>
-  <rect x="0.5" y="0.5" width="899" height="129" rx="10" fill="#ffffff" stroke="#d0d7de"/>
-  <text x="450" y="42" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#24292f">wadeKeith</text>
-  <text x="450" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="17" font-weight="600" fill="#0969da">Embodied AI | Vision-Language-Action | Robot Learning</text>
-  <text x="450" y="101" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" fill="#57606a">Building research systems that connect models, data, and real robots</text>
+<svg width="900" height="220" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Cheng Yin — memory in action</title>
+  <desc id="desc">Research profile banner showing timestamped observations retained until a robot action is selected.</desc>
+
+  <rect x="1" y="1" width="898" height="218" rx="12" fill="#121820" stroke="#35414D" stroke-width="2"/>
+  <path d="M468 26V194" stroke="#2A3540"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="42" y="42" font-size="12" font-weight="700" letter-spacing="2.2" fill="#54C6BE">CHENG YIN · RESEARCH PROFILE</text>
+    <text x="42" y="85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="700" fill="#EEF2F3">I build VLAs that remember,</text>
+    <text x="42" y="121" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="29" font-weight="700" fill="#EEF2F3">reason, and act across time.</text>
+    <text x="42" y="156" font-size="13" fill="#AAB8C3">EMBODIED AI · ROBOT LEARNING · LONG-CONTEXT MEMORY</text>
+    <path d="M42 177H224" stroke="#185ADB" stroke-width="3"/>
+    <path d="M224 177H438" stroke="#54C6BE" stroke-width="3"/>
+    <text x="42" y="201" font-size="11" fill="#7F909D">HUST · THUNLP · BEIJING ZHONGGUANCUN ACADEMY</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="500" y="42" font-size="11" font-weight="700" letter-spacing="1.6" fill="#7F909D">RETAINED CONTEXT</text>
+    <text x="846" y="42" text-anchor="end" font-size="11" font-weight="700" letter-spacing="1.6" fill="#FF7B5E">ACTION</text>
+
+    <path d="M523 112H822" stroke="#35414D" stroke-width="6" stroke-linecap="round"/>
+    <path d="M523 112H761" stroke="#54C6BE" stroke-width="3" stroke-linecap="round"/>
+    <path d="M761 112H822" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"/>
+
+    <g>
+      <rect x="494" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
+      <circle cx="527" cy="91" r="5" fill="#54C6BE"/>
+      <text x="527" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 01</text>
+      <text x="527" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−60s</text>
+    </g>
+    <g>
+      <rect x="568" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
+      <circle cx="601" cy="91" r="5" fill="#54C6BE"/>
+      <text x="601" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 02</text>
+      <text x="601" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−20s</text>
+    </g>
+    <g>
+      <rect x="642" y="72" width="66" height="80" rx="5" fill="#1B2630" stroke="#40505D"/>
+      <circle cx="675" cy="91" r="5" fill="#54C6BE"/>
+      <text x="675" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">OBS 03</text>
+      <text x="675" y="138" text-anchor="middle" font-size="10" fill="#8FA1AE">t−5s</text>
+    </g>
+    <g>
+      <rect x="716" y="72" width="66" height="80" rx="5" fill="#182F4F" stroke="#3977C9"/>
+      <circle cx="749" cy="91" r="5" fill="#4C8FE8"/>
+      <text x="749" y="119" text-anchor="middle" font-size="11" font-weight="700" fill="#EEF2F3">NOW</text>
+      <text x="749" y="138" text-anchor="middle" font-size="10" fill="#AFCBF1">t</text>
+    </g>
+    <g>
+      <rect x="790" y="72" width="66" height="80" rx="5" fill="#FF5A36" stroke="#FF8B72"/>
+      <path d="M809 91H837M829 83L837 91L829 99" stroke="#121820" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="823" y="119" text-anchor="middle" font-size="11" font-weight="800" fill="#121820">ACT</text>
+      <text x="823" y="138" text-anchor="middle" font-size="10" font-weight="700" fill="#121820">policy</text>
+    </g>
+
+    <text x="500" y="183" font-size="11" fill="#8FA1AE">PRIOR OBSERVATIONS REMAIN AVAILABLE AT DECISION TIME</text>
+  </g>
 </svg>
