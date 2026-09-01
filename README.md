@@ -47,9 +47,9 @@ DeepThinkVLA studies when explicit reasoning improves robot action. It reports a
 
 | Public projects | Stars · owned + contributed repos | Contributions · last 12 months |
 | ---: | ---: | ---: |
-| 25 | 578,145 | 1,010 |
+| 25 | 578,608 | 1,018 |
 
-<sub>Public GitHub data · repository stars include owned and verified contributed projects · refreshed 2026-08-31 10:53 UTC</sub>
+<sub>Public GitHub data · repository stars include owned and verified contributed projects · refreshed 2026-09-01 05:19 UTC</sub>
 <!-- PROFILE:END -->
 
 <!--
