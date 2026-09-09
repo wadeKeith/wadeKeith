@@ -17,6 +17,16 @@ I am a Ph.D. researcher at HUST, undertaking joint research training with Tsingh
 
 ## Selected Research
 
+### [SimpleMemVLA](https://github.com/wadeKeith/SimpleMemVLA)
+
+*A Simple but Effective Native-Video Memory for Vision-Language-Action Models*
+
+`FIRST-AUTHOR RESEARCH` · `ARXIV PREPRINT · SEP 2026`
+
+SimpleMemVLA uses timestamped video history as native VLM context for long-horizon robot manipulation, without a dedicated memory module. The paper reports **state-of-the-art results on four memory benchmarks**, while shared-prefix prefilling keeps decision latency close to a single-frame VLA.
+
+[Paper](https://arxiv.org/abs/2609.05533) · [Code](https://github.com/wadeKeith/SimpleMemVLA) · [Models & data](https://github.com/wadeKeith/SimpleMemVLA#-data--checkpoints)
+
 ### [DeepThinkVLA](https://github.com/OpenBMB/DeepThinkVLA)
 
 `FIRST-AUTHOR RESEARCH`
